@@ -1,0 +1,366 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[spanish]{babel}
+\usepackage[a4paper,bindingoffset=0.2in,%
+            left=.5in,right=.5in,top=1in,bottom=1in,%
+            footskip=.25in]{geometry}
+\pagestyle{myheadings}
+\usepackage[tablename = Tabla]{caption}
+\usepackage[figurename = Figura]{caption}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{commath}
+\usepackage{amsmath}
+\usepackage[bottom]{footmisc}
+\DeclareMathOperator{\atan}{arctan}
+\author{Eric Cardozo}
+\title{Trabajo pr\'actico de laboratorio Nº3: Campo magnético generado por corrientes}
+\usepackage{subfig}
+\usepackage{siunitx}
+\sisetup{separate-uncertainty=true}
+\usepackage{booktabs}
+
+\begin{document}
+\markright{Cardozo Eric}
+
+\maketitle
+
+\subsection*{Objetivos}
+Estudiar el comportamiento del campo magnético generado por un par de bobinas de Helmholtz.
+
+\subsection*{Instrumentos}
+
+\begin{itemize}
+	\item Multímetro ZURICH ZR-955
+	\item Multímetro UNIT-UT58E
+	\item Fuente de alimentación UNIT-T modelo UPT3315TFL
+	\item Brújula
+	\item Par de bobinas de Helmholtz
+	\item Data Logger Pasco
+	\item Sonda de hall Pasco
+\end{itemize}
+
+\subsection*{Metodología}
+
+\begin{itemize}
+	\item Utilizando una brújula y la sonda de Hall, se determina la dirección y el valor del campo magnético residual en el lugar en el que se colocaran las bobinas de Helmholtz.
+	\item Se realiza una medición del diámetro interior de la bobina utilizando un calibre, y se calcula el diámetro exterior a partir de la medición de su perímetro con un hilo y una regla milimétrica. Se realiza una estimación del diámetro de las bobinas promediando el radio interior y el exterior.
+	\item Se configura la fuente para entregar una corriente constante, luego se conecta cada bobina por separado y se hace circular una corriente de $\SI{1}{\ampere}$, por cada una. 
+	\item Utilizando la sonda de Hall, se mide el campo magnetico longitudinal, generado por cada bobina, a lo largo del eje que pasa por el centro.
+	\item Se conectan ambas bobinas en configuración Helmholtz haciéndose circular una corriente de $\SI{2}{\ampere}$ por ambas bobinas, utilizando la sonda de Hall, se mide el campo magnético longitudinal a lo largo del eje que pasa por el centro del par de bobinas para tres separaciones distintas.
+	\item Hallar experimentalmente la configuración optima para conseguir el mayor rango de campo uniforme. 
+\end{itemize}	
+	
+\subsection*{Resultados}
+Se midieron los diámetros internos de las bobinas con el calibre, obteniéndose:\footnote{Se asigno un error de $\SI{1}{\milli\meter}$ a las mediciones, debido a que la incertidumbre en la medición no se debió al calibre, sino mas bien al método de medición del radio, el cual variaba según la posición del calibre, a lo sumo esa cantidad.}
+
+$$d_1 = \SI{10.2(1)}{\centi\meter}$$
+
+$$d_2 = \SI{10.1(1)}{\centi\meter}$$
+
+
+Se midieron los perímetros de las bobinas obteniéndose:\footnote{Se asigno un error de $\SI{3}{\milli\meter}$ a la medición de perímetro debido a que los estiramientos del hilo inferían en el resultado en a lo sumo esa cantidad.}
+
+$$p_1 = \SI{41.8(2)}{\centi\meter}$$
+
+$$p_2 = \SI{41.5(2)}{\centi\meter}$$
+
+Para estimar el radio de cada bobina uso el promedio de los radios interno y externo:
+
+$$ \bar{r} = \frac{p}{4\pi} + \frac{d}{4} \qquad s_r = \frac{1}{4} \sqrt{\left(\frac{s_p}{\pi}\right)^2 + s_d^2 }$$
+
+Se obtuvo para cada bobina:
+
+$$r_1 = \SI{5.9(1)}{\centi\meter}$$
+
+$$r_2 = \SI{5.8(1)}{\centi\meter}$$
+
+Con la sonda de hall se midió un campo magnético residual en la posición de las bobinas obteniéndose:
+
+$$B_{res} = \SI{4(3)d-4}{\tesla}$$
+
+Conectando cada bobina por separado a la fuente, se lograron medir los valores del campo magnético en función de la distancia de la sonda al centro de las bobinas. Los datos obtenidos se ajustaron usando el modelo:
+
+$$ B_z = N\frac{i \mu_0r^2 }{2(r^2 + (z-z_0)^2)^{\frac{3}{2}}} $$
+
+ Con $N$ el numero de vueltas, y $r$ el radio para cada bobina, y $z_0$ el centro de las bobinas, tomados como parámetros a determinar, inicializados con los valores de radio medidos anteriormente y $N = 500$, y con $i$ la intensidad de corriente y $\mu_0$, la permeabilidad magnética del vacío constantes.
+ 
+ El parámetro $z_0$, no se deja como parámetro libre por ser una cantidad que se quiera medir, sino como una forma de mejorar el ajuste centrando la función ajustada sobre los puntos. 
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.6\textwidth]{helm1.jpg}
+\caption{Medición de campo magnético en bobina}
+  \label{fig:ejemplo}
+\end{figure}
+
+
+
+\begin{table}[H]
+ \centering
+ \begin{tabular}{|c|c|c}
+Distancia al centro [\si\meter] & Campo magnético [\si\tesla] \\
+\hline
+$ -0.098 $ & $ 0.00068 \pm 0.0003 $ \\
+$ -0.078 $ & $ 0.00113 \pm 0.0003 $ \\
+$ -0.068 $ & $ 0.00142 \pm 0.0003 $ \\
+$ -0.058 $ & $ 0.00183 \pm 0.0003 $ \\ 
+$ -0.048 $ & $ 0.00235 \pm 0.0003 $ \\
+$ -0.038 $ & $ 0.00302 \pm 0.0003 $ \\ 
+$ -0.028 $ & $ 0.00366 \pm 0.0003 $ \\ 
+$ -0.018 $ & $ 0.00445 \pm 0.0003 $ \\ 
+$ -0.008 $ & $ 0.00488 \pm 0.0003 $ \\ 
+$ 0.002 $ & $ 0.0049 \pm 0.0003 $ \\ 
+$ 0.012 $ & $ 0.00454 \pm 0.0003 $ \\ 
+$ 0.022 $ & $ 0.00392 \pm 0.0003 $ \\ 
+$ 0.032 $ & $ 0.00329 \pm 0.0003 $ \\ 
+$ 0.042 $ & $ 0.00266 \pm 0.0003 $ \\ 
+$ 0.052 $ & $ 0.00212 \pm 0.0003 $ \\ 
+$ 0.062 $ & $ 0.00166 \pm 0.0003 $ \\ 
+$ 0.082 $ & $ 0.00103 \pm 0.0003 $ \\ 
+$ 0.102 $ & $ 0.00063 \pm 0.0003 $ \\ 
+ \end{tabular}
+\caption{Datos recolectados en bobina 1} 
+ \end{table}
+
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=1\textwidth]{b1.eps}
+\caption{Campo magnético en bobina 1}
+  \label{b1plot}
+\end{figure}
+
+Valores obtenidos para la primera bobina:
+
+$$r_1 = \SI{6.0(3)}{\centi\meter} \qquad N_1 = \SI{468(16)}{} $$
+
+
+\begin{table}[H]
+ \centering
+ \begin{tabular}{|c|c|c}
+Distancia al centro [\si\meter] & Campo magnético [\si\tesla] \\
+\hline
+$ 0.102 $ & $ 0.00059 \pm 0.0003 $ \\
+$ 0.082$ & $ 0.00095 \pm 0.0003 $ \\ 
+$ 0.062 $ & $ 0.00158 \pm 0.0003 $ \\ 
+$ 0.052 $ & $ 0.00199 \pm 0.0003 $ \\ 
+$ 0.042 $ & $ 0.00264 \pm 0.0003 $ \\ 
+$ 0.032 $ & $ 0.0033 \pm 0.0003 $ \\ 
+$ 0.022 $ & $ 0.00393 \pm 0.0003 $ \\ 
+$ 0.012 $ & $ 0.00454 \pm 0.0003 $ \\ 
+$ 0.002 $ & $ 0.00486 \pm 0.0003 $ \\ 
+$ -0.008 $ & $ 0.00481 \pm 0.0003 $ \\ 
+$ -0.018 $ & $ 0.00436 \pm 0.0003 $ \\ 
+$ -0.028 $ & $ 0.00365 \pm 0.0003 $ \\ 
+$ -0.038 $ & $ 0.00293 \pm 0.0003 $ \\ 
+$ -0.048 $ & $ 0.00229 \pm 0.0003 $ \\ 
+$ -0.058 $ & $ 0.00185 \pm 0.0003 $ \\ 
+$ -0.078 $ & $ 0.00109 \pm 0.0003 $ \\ 
+$ -0.098 $ & $ 0.00068 \pm 0.0003 $ \\
+ \end{tabular}
+\caption{Datos recolectados en bobina 2} 
+ \end{table}
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=1\textwidth]{b2.eps}
+\caption{Campo magnético en bobina 2}
+  \label{b2plot}
+\end{figure}
+
+Valores obtenidos para la segunda bobina:
+
+$$r_1 = \SI{5.9(3)}{\centi\meter} \qquad N_1 = \SI{458(17)}{} $$
+
+
+Conectando las bobinas en paralelo en configuración Helmholtz, se lograron medir los valores del campo magnético en función de la distancia de la sonda al centro de ambas bobinas. Los datos obtenidos se ajustaron usando el modelo:
+
+$$ B_z =  \frac{i mu_0}{2}\left(\frac{N_1 r_1^2 }{\left[ r_1^2 + \left(z - z_0 +  \frac{d}{2} \right)^2\right]^{\frac{3}{2}}} + \frac{N_2 r_2^2 }{\left[ r_2^2 + \left(z - z_0 -  \frac{d}{2} \right)^2\right]^{\frac{3}{2}}} \right)$$
+
+Para realizar los ajustes se utilizaron como parámetro a determinar, la distancia $d$ entre bobinas y el origen $z_0$, con , $i = \SI{1.00}{\ampere}$ la intensidad de corriente y $\mu_0$, la permeabilidad magnética del vacío, $r_1$ y $r_2$ obtenidos anteriormente y $N_1$ y $N_2$ el número de vueltas de conductor en cada bobina, calculados en el inciso anterior. \footnote{Para realizar los ajustes se utilizaron los programas \url{b1curv_fit.py}, \url{b2curv_fit.py}, \url{hcurv_fit.py}, \url{hmcurv_fit.py} y  \url{hMcurv_fit.py} de la carpeta TP3 del repositorio \url{https://github.com/ericcar97/fis_exp_III.git} , los datos analizados y los programas para analizarlos también se encuentran en dicho repositorio.}
+
+
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.6\textwidth]{helm3.jpg}
+\caption{Configuración Helmholtz}
+  \label{fig:ejemplo}
+\end{figure}
+
+
+
+\begin{table}[H]
+ \centering
+ \begin{tabular}{|c|c|c}
+Distancia al centro [\si\meter] & Campo magnético [\si\tesla] \\
+\hline
+$ -0.11 $ & $ 0.00148 \pm 0.0003 $ \\
+$ -0.1 $ & $ 0.00185 \pm 0.0003 $ \\ 
+$ -0.09 $ & $ 0.00239 \pm 0.0003 $ \\ 
+$ -0.08 $ & $ 0.00296 \pm 0.0003 $ \\ 
+$ -0.07 $ & $ 0.00373 \pm 0.0003 $ \\ 
+$ -0.06 $ & $ 0.0047 \pm 0.0003 $ \\ 
+$ -0.05 $ & $ 0.00562 \pm 0.0003 $ \\ 
+$ -0.04 $ & $ 0.00609 \pm 0.0003 $ \\ 
+$ -0.03 $ & $ 0.00652 \pm 0.0003 $ \\ 
+$ -0.02 $ & $ 0.00671 \pm 0.0003 $ \\ 
+$ -0.01 $ & $ 0.00674 \pm 0.0003 $ \\ 
+$ 0.0 $ & $ 0.00671 \pm 0.0003 $ \\ 
+$ 0.01 $ & $ 0.00677 \pm 0.0003 $ \\ 
+$ 0.02 $ & $ 0.0067 \pm 0.0003 $ \\ 
+$ 0.03 $ & $ 0.00644 \pm 0.0003 $ \\ 
+$ 0.04 $ & $ 0.00589 \pm 0.0003 $ \\
+$ 0.05 $ & $ 0.00508 \pm 0.0003 $ \\ 
+$ 0.06 $ & $ 0.00427 \pm 0.0003 $ \\ 
+$ 0.07 $ & $ 0.00338 \pm 0.0003 $ \\ 
+$ 0.08 $ & $ 0.00265 \pm 0.0003 $ \\ 
+$ 0.09 $ & $ 0.0021 \pm 0.0003 $ \\
+
+ \end{tabular}
+\caption{Datos recolectados en bobinas, configuración Helmholtz} 
+ \end{table}
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.9\textwidth]{h.eps}
+\caption{Campo magnético en configuración Helmholtz}
+  \label{hplot}
+\end{figure}
+
+
+La distancia obtenida para el modelo con una distancia medida entre bobinas de $d_0 = \SI{5.9(1)}{\centi\meter}$ fue de: $$d = \SI{6.4(1)}{\centi\meter}$$
+
+
+\begin{table}[H]
+ \centering
+ \begin{tabular}{|c|c|c}
+Distancia al centro [\si\meter] & Campo magnético [\si\tesla] \\
+\hline
+$ -0.085 $ & $ 0.00248 \pm 0.0003 $ \\ 
+$ -0.075 $ & $ 0.0031 \pm 0.0003 $ \\ 
+$ -0.065 $ & $ 0.00383 \pm 0.0003 $ \\ 
+$ -0.055 $ & $ 0.00475 \pm 0.0003 $ \\ 
+$ -0.045 $ & $ 0.00571 \pm 0.0003 $ \\ 
+$ -0.035 $ & $ 0.00643 \pm 0.0003 $ \\ 
+$ -0.025 $ & $ 0.00697 \pm 0.0003 $ \\ 
+$ -0.015 $ & $ 0.00728 \pm 0.0003 $ \\ 
+$ -0.005 $ & $ 0.00735 \pm 0.0003 $ \\ 
+$ 0.005 $ & $ 0.00733 \pm 0.0003 $ \\ 
+$ 0.015 $ & $ 0.00724 \pm 0.0003 $ \\ 
+$ 0.025 $ & $ 0.00688 \pm 0.0003 $ \\ 
+$ 0.035 $ & $ 0.00634 \pm 0.0003 $ \\ 
+$ 0.045 $ & $ 0.00544 \pm 0.0003 $ \\ 
+$ 0.055 $ & $ 0.00448 \pm 0.0003 $ \\ 
+$ 0.065 $ & $ 0.00355 \pm 0.0003 $ \\ 
+$ 0.075 $ & $ 0.00275 \pm 0.0003 $ \\ 
+
+ \end{tabular}
+\caption{Datos recolectados con bobinas con distancia menor a la de configuración Helmholtz} 
+ \end{table}
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.9\textwidth]{hm.eps}
+\caption{Campo magnético con bobinas a distancia menor a la de configuración Helmholtz}
+  \label{hmplot}
+\end{figure}
+
+La distancia obtenida para el modelo con una distancia medida entre bobinas de $d_0 = \SI{4.9(1)}{\centi\meter}$ fue de: $$d = \SI{5.5(2)}{\centi\meter}$$
+
+\begin{table}[H]
+ \centering
+ \begin{tabular}{|c|c|c}
+Distancia al centro [\si\meter] & Campo magnético [\si\tesla] \\
+\hline
+
+$ -0.095 $ & $ 0.0023 \pm 0.0003 $ \\ 
+$ -0.075 $ & $ 0.00373 \pm 0.0003 $ \\ 
+$ -0.065 $ & $ 0.00454 \pm 0.0003 $ \\ 
+$ -0.055 $ & $ 0.00526 \pm 0.0003 $ \\ 
+$ -0.045 $ & $ 0.00589 \pm 0.0003 $ \\ 
+$ -0.035 $ & $ 0.00625 \pm 0.0003 $ \\ 
+$ -0.025 $ & $ 0.00634 \pm 0.0003 $ \\ 
+$ -0.015 $ & $ 0.00621 \pm 0.0003 $ \\ 
+$ -0.005 $ & $ 0.00615 \pm 0.0003 $ \\ 
+$ 0.005 $ & $ 0.00615 \pm 0.0003 $ \\ 
+$ 0.015 $ & $ 0.00625 \pm 0.0003 $ \\ 
+$ 0.025 $ & $ 0.00634 \pm 0.0003 $ \\ 
+$ 0.035 $ & $ 0.00617 \pm 0.0003 $ \\ 
+$ 0.045 $ & $ 0.00562 \pm 0.0003 $ \\ 
+$ 0.055 $ & $ 0.0049 \pm 0.0003 $ \\ 
+$ 0.065 $ & $ 0.00383 \pm 0.0003 $ \\ 
+$ 0.075 $ & $ 0.00319 \pm 0.0003 $ \\
+
+ \end{tabular}
+\caption{Datos recolectados con bobinas con distancia mayor a la de configuración Helmholtz} 
+ \end{table}
+
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.9\textwidth]{hM.eps}
+\caption{Campo magnético con bobinas a distancia mayor a la de Helmholtz}
+  \label{hMplot}
+\end{figure}
+
+
+La distancia obtenida para el modelo con una distancia medida entre bobinas de $d_0 = \SI{6.9(1)}{\centi\meter}$ fue de: $$d = \SI{7.2(2)}{\centi\meter}$$
+
+
+
+\subsection*{Conclusiones}
+
+Se logro determinar el radio número de vueltas de alambre de cada bobina, de forma individual, midiendo el campo magnético generado por una corriente de $\SI{1}{\ampere}$, a lo largo del eje que pasa por su centro, y realizándose ajustes no lineales a los puntos medidos, usando el modelo descripto por la teoría electromagnética, obteniéndose:
+\begin{itemize}
+
+\item Para la primera bobina se obtuvo: $$r_1 = \SI{6.0(3)}{\centi\meter} \qquad N_1 = \SI{468(16)}{} $$
+
+\item Para la segunda bobina se obtuvo: $$r_2 = \SI{5.9(3)}{\centi\meter} \qquad N_2 = \SI{458(17)}{} $$
+
+\end{itemize}
+
+Comparándolos con los valores obtenidos por una medición directa:
+
+\begin{itemize}
+
+\item El radio medido de la primera bobina fue de: $r_1 = \SI{5.9(1)}{\centi\meter}$
+
+\item  El radio medido de la segunda bobina fue de: $r_2 = \SI{5.8(1)}{\centi\meter}$
+\end{itemize}
+
+
+Se pueden ver que los valores de radio de las bobinas obtenidos por ambos métodos son estad\'isticamente indistinguibles. 
+
+\hspace{1cm}
+
+Luego, a partir de los valores medidos del campo magnético a lo largo del eje para diferente separación entre las bobinas, y se realizaron ajustes no lineales en los cuales se determinaron la separación real entre las bobinas, utilizando como valores fijos, los radios y números de vuelta calculados en el inciso anterior, obteniéndose: 
+
+\begin{itemize}
+	\item Para separación $d_0 = \SI{5.9(1)}{\centi\meter}$ se obtuvo: $d = \SI{6.4(1)}{\centi\meter}$
+
+	\item Para separación $d_0 = \SI{4.9(1)}{\centi\meter}$ se obtuvo: $d = \SI{5.5(2)}{\centi\meter}$
+	
+	\item Para separación $d_0 = \SI{6.9(1)}{\centi\meter}$ se obtuvo: $d = \SI{7.2(2)}{\centi\meter}$
+
+\end{itemize}
+
+La diferencia entre las distancias entre los bobinas medidas directamente y las obtenidas mediante el ajuste de los puntos se deben a defectos en los rieles que impidieron que las bobinas se puedan poner perfectamente paralelas, lo que también ocasiono errores en la medición de los valores $d_0$.
+
+\hspace{1cm}
+
+Según la teoría electromagnética, se obtiene un campo uniforme cuando la separación entre bobinas es igual al radio de estas, es decir $d \approx \SI{5.95}{\centi\meter}$ (promedio entre ambos radios).
+
+\hspace{1cm}
+
+
+Observando las figuras \ref{hplot} y \ref{hmplot}, se observa que para ambos conjuntos de datos se obtuvieron campos bastante uniformes, mientras que en la figura \ref{hMplot}, se observa que este ultimo conjunto de datos medidos se aleja un poco mas de la configuración ideal. Por lo que se puede confirmar la presencia de campos uniformes para alguna configuración muy cercana a las medidas. 
+
+\hspace{1cm}
+
+De los resultados obtenidos en los ajustes para la distancia $d$, se puede concluir que el valor \'optimo de distancia entre bobinas se encuentra en el punto medio de las distancias para las cuales se midieron los campos magnéticos de las figuras \ref{hplot} y \ref{hmplot}.
+
+
+\end{document}
