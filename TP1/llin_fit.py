@@ -16,7 +16,7 @@ y_data = data[column[1]].values
 y_error = data[column[2]].values
 N = len(data)
 
-a, b, sa, sb, r_squared, sigma = lin_fit_mod.s_lin_reg(x_data, y_data, N)
+a, b, sa, sb, r_squared, sigma = lin_fit_mod.w_lin_reg(x_data, y_data, N)
 residuals = y_data - (a*x_data + b)
 
 alpha = 0.05
