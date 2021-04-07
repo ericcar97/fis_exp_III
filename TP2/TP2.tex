@@ -1,0 +1,264 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[spanish]{babel}
+\usepackage[a4paper,bindingoffset=0.2in,%
+            left=.5in,right=.5in,top=1in,bottom=1in,%
+            footskip=.25in]{geometry}
+\pagestyle{myheadings}
+\usepackage[tablename = Tabla]{caption}
+\usepackage[figurename = Figura]{caption}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{commath}
+\usepackage{amsmath}
+\usepackage[bottom]{footmisc}
+\DeclareMathOperator{\atan}{arctan}
+\author{Eric Cardozo}
+\title{Trabajo pr\'actico de laboratorio Nº2: Circuitos RLC}
+\usepackage{subfig}
+\usepackage{siunitx}
+\sisetup{separate-uncertainty=true}
+\usepackage{booktabs}
+
+\begin{document}
+\markright{Cardozo Eric}
+
+\maketitle
+
+\subsection*{Objetivos}
+Estudiar la respuesta de un circuito RLC serie en corriente alterna
+
+\subsection*{Instrumentaci\'on}
+\begin{itemize}
+\item Resistencia
+\item Inductancia
+\item Capacitor
+\item Multímetro ZURICH ZR-955
+\item Multímetro UNIT-UT58E
+\item Multímetro LCR-814
+\item Generador de funciones Goldstar analógico
+\item Amplificador de corriente
+\item Osciloscopio Tektronix TDS 1001C-EDU
+\end{itemize}
+
+\subsection*{Metodología}
+\begin{itemize}
+
+\item Se realiza una estimación preliminar de la frecuencia de resonancia del circuito RLC.
+ 
+\item Con ayuda del osciloscopio, se configura el generador de funciones (GF) para una
+salida del A/S con una señal sinusoidal con una frecuencia de 100Hz y una amplitud de ±1.5V
+aproximadamente.
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.4\textwidth]{fig1.jpg}
+\caption{Configuración de fuente}
+  \label{fig:ejemplo}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.6\textwidth]{fig2.jpg}
+\caption{Configuración de osciloscopio}
+  \label{esquematico}
+\end{figure}
+
+\item Se realiza la conexión del circuito como en el esquemático de la figura
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.4\textwidth]{fig0.png}
+\caption{Esquemático de circuito}
+  \label{esquematico}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.6\textwidth]{fig3.jpg}
+\caption{Montaje del circuito RLC}
+  \label{esquematico}
+\end{figure}
+
+\item Variando la frecuencia en el generador de funciones, se encuentra el valor de la frecuencia de resonancia del circuito, con la ayuda del osciloscopio para mostrar la figura Lissajous. 
+
+\item A partir de la frecuencia de resonancia, se determinan 11 valores de frecuencia, equi-espaciados en escala logarítmica, para los cuales se realizaran mediciones de la tension pico-pico de las señales en la fuente y en la resistencia, y el desfasaje entre estas señales.
+
+\item Se ajustan los puntos obtenidos con los modelos adecuados para obtener los valores de frecuencia y factor de calidad del circuito. 
+
+\end{itemize}
+
+
+\subsection*{Resultados}
+
+Se midieron los valores de capacitancia e inductancia con multímetro LCR-814, con resoluciones de $\SI{2}{\micro\farad}$ y $\SI{2}{\milli\henry}$ respectivamente. Para ambas resoluciones la precision del instrumento es del 1\% + 2dgt, obteniéndose:
+
+$$L = \SI{0.68(1)}{\milli\henry}$$
+$$C = \SI{1.01(1)}{\micro \farad}$$
+
+Se midió el valor de la resistencia con los multímetros ZURICH ZR-955, con una resolución de $\SI{200}{\ohm}$. La precision del multímetro ZURICH es del 1\% + 3dgt, con resolución una resolución de $ \SI{0.1}{\ohm}$, obteniéndose:
+
+$$ R = \SI{26.6(6)}{\ohm} $$ 
+
+La frecuencia de resonancia para el circuito RLC en serie esta dada por: 
+
+$$\bar{\nu_0} = \frac{1}{2\pi \sqrt{L C}} \qquad s_{\nu_0} = \frac{1}{4 \pi}\sqrt{\frac{s_{L}^{2}}{ C L^{3}} + \frac{s_{C}^{2}}{ C^{3} L}}$$
+
+
+Obteniéndose un valor de: 
+
+$$ \nu_0 = \SI{6.07(5)}{\kilo\hertz} $$
+
+También es necesario calcular el factor de calidad $Q$, dado por:
+
+$$\bar{Q} = \frac{1}{R}\sqrt{\frac{L}{C}} \qquad s_Q = \sqrt{\frac{L s_{R}^{2}}{C R^{4}} + \frac{s_{L}^{2}}{4 C L R^{2}} + \frac{L s_{C}^{2}}{4 C^{3} R^{2}}}
+$$
+
+Obteniéndose un valor de: 
+
+$$ Q = \SI{0.98(3)}{}$$
+
+
+De la figura de Lissojaus se observo como una recta a $\SI{45}{\degree}$, lo cual corresponde a una frecuencia de resonancia, la cual se mide con el osciloscopio con un valor de:  
+
+$$ \nu_0 = \SI{6.07(1)}{\kilo\hertz} $$ 
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.6\textwidth]{fig4.jpg}
+\caption{figura de Lissojaus}
+  \label{esquematico}
+\end{figure}
+
+Los valores obtenidos mediante el calculo a partir de los componentes del circuito, y el obtenido en el osciloscopio son estilísticamente indistinguibles.
+
+Se realizaron 10 mediciones de tensiones pico-pico y desfasajes para frecuencias equi-espaciadas en escala logarítmica, centradas en la frecuencia de resonancia, dadas por: 
+
+\begin{align*}
+\nu_j = \nu_{min}\left(\frac{\nu_{max}}{\nu_{min}}\right)^{\frac{j}{10}} \text{                para } j = 0,...,10.
+\end{align*}
+ 
+Los valores medidos fueron: la frecuencia de la fuente $\nu$, la tension pico-pico de la fuente y en la resistencia, $V_f$ y $V_R$ y los tiempos para los cuales las ondas se anulan(ceros consecutivos).
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}|c|c|c|c|c|@{}}
+$\nu [\si\kilo\si\hertz]$  & $|V_f| [\si\volt]$ & $|V_R| [\si\volt]$  & $ t_1 [\si\micro\si\second] $ & $ t_2 [\si\micro\si\second] $                             
+                \\ \hline
+$0.61 \pm 0.01$ & $2.96 \pm 0.02$ & $0.40 \pm 0.02$ & $8.0 \pm 0.1$    & $430 \pm 60$ \\
+$0.96 \pm 0.01$ & $2.96\pm 0.02$  & $0.55 \pm 0.02$ & $508 \pm 4$    & $27 \pm 40$  \\
+$1.52 \pm 0.05$ & $2.98\pm 0.02$  & $0.80 \pm 0.02$ & $312 \pm 4$    & $164 \pm 30$ \\
+$2.40\pm 0.05$  & $3.04 \pm 0.02$ & $1.26 \pm 0.02$ & $404 \pm 4$    & $330 \pm 10$ \\
+$3.83\pm 0.05$  & $3.00 \pm 0.04$ & $2.10 \pm 0.02$ & $514 \pm 2$    & $482 \pm 3$  \\
+$6.07\pm 0.05$  & $3.00 \pm 0.04$ & $2.82 \pm 0.03$ & $77 \pm 2$     & $77 \pm 2$   \\
+$9.62\pm 0.05$  & $3.00 \pm 0.04$ & $2.00 \pm 0.03$ & $48 \pm 1$     & $61 \pm 3$   \\
+$24.1\pm 0.1$   & $3.00 \pm 0.04$ & $0.86 \pm 0.02$ & $40.4 \pm 0.5$ & $48\pm 3$    \\
+$38.3\pm 0.1$   & $3.00 \pm 0.04$ & $0.59 \pm 0.02$ & $51.1 \pm 0.1$ & $56 \pm 2$   \\
+$60.7\pm 0.1$   & $3.00 \pm 0.04$ & $0.39 \pm 0.02$ & $57.3 \pm 0.1$ & $60.7 \pm 1$
+\end{tabular}
+\end{table}
+
+Las incertidumbres en los valores obtenidos de tiempo se midieron utilizando los punteros del osciloscopio para cada medida, midiendo el ancho de la onda los lugares en las que se anulaba.
+
+\hspace{1cm}
+
+Los desfasajes se obtienen de la medición de los tiempos para los cuales la onda se anula. Ya que las onda están dadas por funciones de la forma $ \sin(\phi - \omega t)$, la onda se anula para valores de $\phi = \omega t$, luego la diferencia de fases entre las señales se obtiene usando que: $\Delta \phi = \omega \Delta t = 2 \pi \nu \Delta t$.
+
+
+\hspace{1cm}
+
+Para cada frecuencia hallo:   $$\Delta \phi = 2 \pi \nu \Delta t \qquad s_{\Delta \phi} = 2\pi \sqrt{ s_{\nu}^2 \Delta t^2 + \nu^2 ( s_{t_1}^2 + s_{t_2}^2)  } $$
+
+Hallo también la función de transferencia del circuito para cada valor de frecuencia. 
+
+$$G_{PB} = \frac{\bar{V_R}}{\bar{V_f}} \qquad s_{G_{PB}} = \sqrt{\frac{V_{R}^{2} s_{V_f}^{2}}{V_{f}^{4}} + \frac{s_{V_R}^{2}}{V_{f}^{2}}}
+ $$
+ \begin{table}[H]
+\centering
+
+\begin{tabular}{@{}|c|c|c|@{}}
+$\nu [\si\kilo\si\hertz]$ &  $G_{PB}(\nu)$                & $\Delta \phi $\\
+                \hline
+$0.61 \pm 0.01$ & $0.14 \pm 0.01$  & $(-95 \pm 10)\si\degree $ \\
+$0.96 \pm 0.01$ & $0.19\pm 0.01$   & $(165 \pm 15)\si\degree $ \\
+$1.52 \pm 0.05$ & $0.27 \pm 0.02$  & $(80 \pm 20)\si\degree $  \\
+$2.40\pm 0.05$  & $0.42 \pm 0.03$  & $(65\pm 10)\si\degree $   \\
+$3.83\pm 0.05$  & $0.70 \pm 0.09$  & $(45 \pm 5)\si\degree $   \\
+$6.07\pm 0.05$  & $0.94 \pm 0.13$  & $(0 \pm 5)\si\degree $    \\
+$9.62\pm 0.05$  & $0.67 \pm 0.09$  & $(-45 \pm 10)\si\degree $ \\
+$24.1\pm 0.1$   & $0.29 \pm 0.04$  & $(-65\pm 25)\si\degree $  \\
+$38.3\pm 0.1$   & $0.20 \pm 0.03$  & $(-70 \pm 25)\si\degree $ \\
+$60.7\pm 0.1$   & $0.131 \pm 0.02$ & $(-75 \pm 20)\si\degree $
+\end{tabular}
+\end{table}
+
+Para circuito pasa banda, la función de transferencia y su respectiva fase estarán dadas por:
+
+$$G_{PB} = \frac{1}{\sqrt{1 + Q^2 \left(\frac{\nu}{\nu_0} \right) ^2 \left[ 1 + \left(\frac{\nu_0}{\nu}\right)^2\right]}}$$
+
+$$ \Delta \phi = -\arctan \left[ Q^2\left( \frac{\nu}{\nu_0} \right) \left( 1 + \left( \frac{\nu_0}{\nu} \right)^2 \right) \right] $$
+
+Donde la fase de la función de transferencia coincide con la diferencia de fase entre las señales de la fuente y en la resistencia. 
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.9\textwidth]{plot.eps}
+\caption{Ajuste de la función $G_{PB}$}
+  \label{ajuste1}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.9\textwidth]{phase.eps}
+\caption{Ajuste de la fase}
+  \label{ajuste2}
+\end{figure}
+
+(Para la realización del ajuste no lineal de la figura \ref{ajuste2}, se descartaron las dos primeras mediciones de fase, ya que no coinciden con el modelo, debido a posibles errores de medición). \footnote{Para realizar los ajustes se utilizaron los programas \url{curv_fit.py} y \url{curv_fit2.py} de la carpeta TP2 del repositorio \url{https://github.com/ericcar97/fis_exp_III.git} , los datos analizados y los programas para analizarlos también se encuentran en dicho repositorio.}
+
+
+\hspace{1cm}
+
+Obtengo finalmente los valores ajustados del factor de calidad $Q$ y la frecuencia de resonancia $\nu_0$. Como la muestra es pequeña, se expresan los resultados con un intervalo de confianza IC del 95\%, utilizando la distribución t-student, para $N-2$ grados de libertad, obteniéndose finalmente, para el ajuste realizado con el modelo de la función de transferencia: 
+$$\nu_0 = \SI{6.25(3)}{\kilo\hertz} \qquad Q = \SI{0.879(5)}{}$$
+
+Con el ajuste realizado por la fase de la función de transferencia:
+
+$$\nu_0 = \SI{6.07}{\kilo\hertz} \qquad Q = \SI{1.0}{}$$
+
+
+No fue sido posible, calcular correctamente las incertidumbres en el segundo caso, esto se debe a una sobre-estimación de los errores de medición en el proceso de medir los tiempos para los cuales las frecuencias se anulaban, lo que resulto en un ajuste con resultados con buena exactitud pero poco precisos.  
+
+\subsection*{Conclusiones}
+
+Se lograron obtener valores del factor de calidad y la frecuencia de resonancia circuito por calculo directo y mediante el ajuste del modelo de la función de transferencia y su fase de un circuito pasa banda, en función de la frecuencia, a puntos medidos usando el osciloscopio, y mediante la medición directa con ayuda de la figura de Lissajous.
+
+\hspace{1cm}
+
+\begin{enumerate}
+\item Valores obtenidos mediante el calculo directo:
+$$ \nu_0 = \SI{6.07(5)}{\kilo\hertz} \qquad Q = \SI{0.98(3)}{}$$
+
+\item Valores obtenidos mediante el ajuste de modelo de la función de transferencia:
+$$\nu_0 = \SI{6.25(3)}{\kilo\hertz} \qquad Q = \SI{0.879(5)}{}$$
+
+\item Valores obtenidos mediante el ajuste de modelo de la fase de la función de transferencia:
+
+$$\nu_0 = \SI{6.07}{\kilo\hertz} \qquad Q = \SI{1.0}{}$$
+
+\item Valor obtenido en la figura de Lissajous
+$$ \nu_0 = \SI{6.07(1)}{\kilo\hertz} $$ 
+\end{enumerate}
+
+
+
+Debido a que los valores obtenidos para el penúltimo caso no tienen incertidumbre, no es posible compararlos con los otros.
+
+Los valores de frecuencia medidos en el primer y el ultimo resultados, son estad\'isticamente indistinguibles, pero difieren de el valor de frecuencia del segundo resultado lo suficiente como para confirmar la presencia de errores no aleatorios, que pueden ser observados también en los residuos del ajuste de la figura \ref{ajuste1}
+
+Los valores de factor de calidad también difieren para los primeros dos casos, dicha diferencia puede ser explicada por que para el caso del calculo directo del factor de calidad, se despreciaron las resistencia de la bobina y los distintos componentes del circuito. 
+
+
+
+\end{document}
