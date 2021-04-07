@@ -1,0 +1,178 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[spanish]{babel}
+\usepackage[a4paper,bindingoffset=0.2in,%
+            left=.5in,right=.5in,top=1in,bottom=1in,%
+            footskip=.25in]{geometry}
+\pagestyle{myheadings}
+\usepackage[tablename = Tabla]{caption}
+\usepackage[figurename = Figura]{caption}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{commath}
+\usepackage{amsmath}
+\usepackage[bottom]{footmisc}
+\DeclareMathOperator{\atan}{arctan}
+\author{Eric Cardozo}
+\title{Trabajo pr\'actico de laboratorio Nº1: Uso de Óhmetro, Amperímetro y Voltímetro.
+Uso de Fuente de Alimentación.}
+\usepackage{subfig}
+\usepackage{siunitx}
+\sisetup{separate-uncertainty=true}
+\usepackage{booktabs}
+\usepackage{url}
+
+
+
+\begin{document}
+\markright{Cardozo Eric}
+
+\maketitle
+\subsection*{Objetivos}
+Determinar la característica tension corriente de una resistencia.
+
+\subsection*{Instrumentación}
+
+\begin{itemize}
+\item Multímetro ZURICH-ZR-955
+\item Multímetro UNIT-UT58E
+\item Fuente de alimentación UNIT-T modelo UPT3315TFL
+\item Resistencia
+\end{itemize}
+
+\subsection*{Metodología}
+\begin{itemize}
+\item En base a los datos estimados por el fabricante, se estima la corriente máxima que puede circular por la misma y el voltaje máximo que se puede aplicar.
+\item Se realiza un circuito simple con la resistencia conectada la fuente. Se configura la fuente para proporcionar una diferencia de potencial constante al circuito.
+\item Se realizan mediciones para distintos valores de tensi\'on y voltajes de la fuente, para el voltímetro puesto en conexión corta y larga (figuras \ref{sco} y \ref{lco} respectivamente), cuidando que la corriente no sobrepase los valores especificados por el fabricante.
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.5\textwidth]{short_co.jpg}
+\caption{conexión corta}
+  \label{sco}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.5\textwidth]{long_co.jpg}
+\caption{conexión larga}
+  \label{lco}
+\end{figure}
+
+
+\item Se obtiene el valor de la resistencia aparente $R_m$ a partir de los pares de datos medidos y se halla el valor real $R$ de la resistencia.
+\item Se mide el valor de la resistencia $R$ y se compara con el obtenido en el item anterior. 
+\end{itemize}
+
+\subsection*{Resultados}
+
+Se midió la resistencia con el multímetro UNIT-UT585, cuyo error asociado en el rango de $\SI{200}{\ohm}$ es del 0.5\% + 10dg con resolución de $\SI{0.01}{\ohm}$, obteniéndose:
+
+$$R = \SI{110.6(6)}{\ohm}$$
+
+Y con el multímetro ZURICH-ZR-955 cuyo error asociado en el rango de $\SI{200}{\ohm}$ es del 1\% + 3dg, obteniéndose:
+
+$$R = \SI{110(1)}{\ohm}$$
+
+Ambos valores son estad\'isticamente indistinguibles entre si.
+
+Se midieron las resistencias internas de ambos multímetros haciendo haciendo un cortocircuito entre la terminal de medición de resistencia y la terminal común (COM), obteniéndose para el multímetro ZURICH-ZR-955: $$R = \SI{0.4(1)}{\ohm}$$
+y para el UNIT-UT58E: $$R = \SI{0.1(1)}{\ohm}$$
+
+Luego se tomaron mediciones de voltaje en conexión corta y conexión larga para distintos valores de corriente: 
+
+ \begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+
+$I [\si\milli\si\ampere]$ &  $V_{cc} [\si\volt]$ & $V_{cl} [\si\volt]$ \\
+                \hline
+
+$ 11.6 \pm 0.7 $ & $ 1.304 \pm 0.004 $ & $ 1.320 \pm 0.004 $ \\ 
+$ 14.6 \pm 0.7 $ & $ 1.636 \pm 0.005 $ & $ 1.660 \pm 0.005 $ \\ 
+$ 17.9 \pm 0.8 $ & $ 2.005 \pm 0.005 $ & $ 2.028 \pm 0.005 $ \\ 
+$ 20.7 \pm 0.8 $ & $ 2.307 \pm 0.005 $ & $ 2.341 \pm 0.005 $ \\ 
+$ 23.7 \pm 0.9 $ & $ 2.643 \pm 0.006 $ & $ 2.673 \pm 0.006 $ \\ 
+$ 26.8 \pm 0.9 $ & $ 2.989 \pm 0.006 $ & $ 3.029 \pm 0.006 $ \\ 
+$ 30.2 \pm 1.0 $ & $ 3.368 \pm 0.006 $ & $ 3.409 \pm 0.006 $ \\ 
+$ 33.3 \pm 1.0 $ & $ 3.700 \pm 0.007 $ & $ 3.750 \pm 0.007 $ \\ 
+$ 37.4 \pm 1.1 $ & $ 4.156 \pm 0.007 $ & $ 4.209 \pm 0.007 $ \\ 
+$ 42.5 \pm 1.1 $ & $ 4.722 \pm 0.008 $ & $ 4.785 \pm 0.008 $ \\ 
+
+\end{tabular}
+\end{table}
+
+Debido a que la incertidumbre obtenida para el voltaje medido en ambos circuitos es muy pequeña comparada con la incertidumbre de la corriente, se toma el voltaje en el eje X y la corriente en el eje Y. Se realiza un ajuste lineal pesado sobre los datos obtenidos. Como el n\'umero de muestras es pequeña, se expresa el resultado con un  intervalo de confianza del 95\%. \footnote{Para realizar los ajustes se utilizaron los programas \url{slin_fit.py} y \url{llin_fit.py} de la carpeta TP1 del repositorio \url{https://github.com/ericcar97/fis_exp_III.git} , los datos analizados y los programas para analizarlos también se encuentran en dicho repositorio.}
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=1\textwidth]{short_conection_VI.eps}
+\caption{conexión corta}
+  \label{fig:ejemplo}
+\end{figure}
+
+Para la conexión corta se obtiene una pendiente $ a = \SI{9.04(2)d-3}{\ohm^{-1}} $
+
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=1\textwidth]{long_conection_VI.eps}
+\caption{conexion larga}
+  \label{fig:ejemplo}
+\end{figure}
+
+
+Para el ajuste lineal de los puntos para la conexión larga se obtiene una pendiente $ a = \SI{8.93(2)d-3}{\ohm^{-1}} $
+
+
+Luego la resistencia estará dada por $$ \bar{R_m} = \frac{1}{\bar{a}} \qquad s_R = \frac{s_a}{\bar{a}^2}$$
+
+Obteniéndose un valor de resistencia aparente para la conexión corta de: $$R_m = \SI{110.6(3)}{\ohm}$$ 
+
+Y para la conexión larga de: $$R_m = \SI{112.0(2)}{\ohm}$$ 
+
+Para calcular el valor real de la resistencia uso los valores de $R_V$ y $R_A$
+
+Con $ R_V = \SI{10}{\mega\ohm} >> R_m$, por lo que $R \approx R_m$.
+
+$R_A$ se obtiene de dividir el Voltaje Burden de $\SI{200}{\milli\volt}$ por la resolución del Amperímetro.
+
+$$R_A = \frac{\SI{200}{\milli\volt}}{\SI{200}{\milli\ampere}} = \SI{1}{\ohm}$$
+
+$$\bar{R} = \frac{R_m}{1-\frac{R_m}{R_V}} \qquad s_R = \frac{1}{\left(1-\frac{R_m}{R_V}\right)^2} \sqrt{s_{R_m}^2+\left(\frac{R_m}{R_V}\right)^4 s_{R_V}^2}$$
+
+
+
+
+Para la conexión larga:
+$$\bar{R} = R_m - R_A$$
+$$s_R = \sqrt{s_{R_m}^2 + s_{R_A}^2}$$
+
+
+Finalmente obtengo para la conexión corta:
+$$R = \SI{110.6(3)}{\ohm}$$
+Y para la conexión larga
+
+$$R = \SI{111.0(2)}{\ohm}$$
+
+\subsection*{Conclusiones}
+
+Se obtuvieron por medición directa valores de resistencia:
+
+$$R = \SI{110.6(6)}{\ohm}$$
+
+$$R = \SI{110(1)}{\ohm}$$
+
+Y mediante regresión lineal:
+
+$$R = \SI{110.6(3)}{\ohm}$$
+
+$$R = \SI{111.0(2)}{\ohm}$$
+
+Todos los intervalos generados por las incertidumbres en las mediciones se solapan entre si, por lo que los valores son todos estad\'isticamente iguales, y cualquiera de los métodos aplicados para medir la resistencia es correcto.
+
+
+
+\end{document}
